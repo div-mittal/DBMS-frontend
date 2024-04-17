@@ -1,6 +1,6 @@
-* {
+/* * {
     color: rgb(255, 72, 0);
-}
+} */
 
 .landing{
     display: flex;
@@ -10,7 +10,7 @@
     height: 85vh;
     /* height: fit-content; */
     background-color: transparent;
-    /* color: rgb(255, 72, 0); */
+    color: rgb(255, 72, 0);
 }
 
 .heading{
@@ -50,11 +50,12 @@
     align-items: center;
     /* justify-content: center; */
     height: 82vh;
-    color: white;
+    color: rgb(255, 72, 0);
     background-image: url("../../assets/blood-types.png");
     background-size: contain;
     background-repeat: no-repeat;
     background-position: bottom;
+    margin-bottom: 2rem;
 }
 
 .about h1{

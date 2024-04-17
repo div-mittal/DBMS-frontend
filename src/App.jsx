@@ -1,6 +1,7 @@
 import './App.css'
 import { Routes, Route } from 'react-router-dom'
 import Navbar from './Components/Navbar/Navbar.jsx'
+import Footer from './Components/Footer/Footer.jsx'
 import Home from './Pages/Home/Home.jsx'
 import Login from './Pages/Login/Login.jsx'
 import SignUp from './Pages/SignUp/SignUp.jsx'
@@ -20,6 +21,7 @@ function App() {
         <Route path="/donate" element={<Donate />} />
         <Route path="/find-donor" element={<FindDonor />} />
       </Routes>
+      <Footer/> 
     </>
     
   )

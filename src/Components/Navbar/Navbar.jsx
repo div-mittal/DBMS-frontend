@@ -12,10 +12,10 @@ function Navbar() {
             {isLoggedIn ? (
                 <div className={styles.routes}>
                     <Link to="/find-donor">
-                        <p  className={styles.finddonor}>FIND DONOR</p>    
+                        <p className={styles.finddonor}>FIND DONOR</p>    
                     </Link>
                     <Link to="/donate">
-                        <p  className={styles.registerdonor}>DONATE</p>
+                        <p className={styles.registerdonor}>DONATE</p>
                     </Link>
                     <Link to="/">
                         <p className={styles.logout}>LOGOUT</p>
