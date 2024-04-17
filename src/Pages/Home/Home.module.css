@@ -1,0 +1,66 @@
+* {
+    color: rgb(255, 72, 0);
+}
+
+.landing{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 85vh;
+    /* height: fit-content; */
+    background-color: transparent;
+    /* color: rgb(255, 72, 0); */
+}
+
+.heading{
+    display: flex;
+    padding-left: 3.5rem;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    height: 100%;
+    width: 100%;
+    text-align: left;
+    background-image: url("../../assets/home.jpg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: right;
+}
+
+
+.heading h1{
+    font-size: 3.5rem;
+    font-weight: 700;
+    width: 25%;
+    margin-bottom: 1rem;
+}
+
+.heading h4{
+    font-size: 1.5rem;
+    font-weight: 500;
+    width: 33%;
+    margin-bottom: 1rem;
+}
+
+.about{
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* justify-content: center; */
+    height: 82vh;
+    color: white;
+    background-image: url("../../assets/blood-types.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: bottom;
+}
+
+.about h1{
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    height: 10%;
+    justify-self: flex-start;
+}
