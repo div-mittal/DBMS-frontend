@@ -1,0 +1,77 @@
+.body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+    background-color: #f5f5f5;
+}
+
+.loginForm {
+    width: 100%;
+    max-width: 400px;
+    padding: 20px 0px; 
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.loginForm h1{
+    margin: 10px 0;
+    background-image: linear-gradient(to right , rgb(255, 72, 0), rgb(108, 2, 2));
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    font-size: 2.3rem;
+}
+
+
+.loginForm div input{
+    width: 90%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+
+}
+
+.loginForm div{
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.loginForm div label{
+    width: 80%;
+    text-align: center;
+    margin: 5px 0;
+    margin-top: 15px;
+    font-size: 1.2rem;
+}
+.loginForm div select{
+    width: 80%;
+    padding: 10px;
+    margin: 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.loginForm div button{
+    width: 90%;
+    padding: 10px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 5px;
+    background-image: linear-gradient(to right , rgb(255, 72, 0), rgb(172, 0, 0));
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.loginButton:hover{
+    background-image: linear-gradient(to right , rgb(255, 72, 0), rgb(108, 2, 2));
+}

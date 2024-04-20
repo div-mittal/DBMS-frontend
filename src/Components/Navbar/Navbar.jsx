@@ -8,7 +8,7 @@ function Navbar() {
 
     return (
         <nav className={styles.navbar}>
-            <a href="#" className={styles.heading}>Blood Guardian</a>
+            <a href="/" className={styles.heading}>Blood Guardian</a>
             {isLoggedIn ? (
                 <div className={styles.routes}>
                     <Link to="/find-donor">
