@@ -35,7 +35,6 @@ const Login = () => {
 
             if (response.status === 200) {
                 const data = await response.json();
-                console.log(data);
                 alert('Login successful');
             } else {
                 const errorText = await response.text();
