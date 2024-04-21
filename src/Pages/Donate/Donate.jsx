@@ -11,8 +11,9 @@ const Donate = () => {
     const [state, setState] = useState('');
     const [district, setDistrict] = useState('');
     const [bloodGroup, setBloodGroup] = useState('');
+    const [mobile, setMobile] = useState('');
 
-    const email = localStorage.getItem('loggedInEmail');
+    const userID = localStorage.getItem('userID');
 
     const handleStateChange = (e) => {
         setState(e.target.value);
@@ -26,6 +27,10 @@ const Donate = () => {
         setBloodGroup(e.target.value);
     }
 
+    const handleMobileChange = (e) => {
+        setMobile(e.target.value);
+    }
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
@@ -35,10 +40,11 @@ const Donate = () => {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    email,
+                    userID,
                     state,
                     district,
                     bloodGroup,
+                    mobile,
                 }),
             });
 
@@ -76,6 +82,8 @@ const Donate = () => {
                     <option value="">Select Blood Group</option>
                     <option value="A+">A+</option>
                 </select>
+                
+                <input type="number" placeholder='Mobile' value={mobile} onChange={handleMobileChange} />
 
                 <button type="submit">Submit</button>
             </form>

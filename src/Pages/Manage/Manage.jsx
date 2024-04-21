@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-
+import { Helmet } from 'react-helmet'; 
 const Manage = () => {
     const userType = localStorage.getItem('userType');
 
@@ -9,9 +9,15 @@ const Manage = () => {
     }
 
     return (
-        <div>
-            <h1>Manage Blood Bank</h1>
-        </div>
+        <>
+            <Helmet>
+                <title>Blood Guardian | Manage Blood Bank</title>
+            </Helmet>
+            <div>
+                <h1>Manage Blood Bank</h1>
+            </div>
+        </>
+        
     );
 }
 

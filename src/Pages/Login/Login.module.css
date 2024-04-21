@@ -75,3 +75,7 @@
 .loginButton:hover{
     background-image: linear-gradient(to right , rgb(255, 72, 0), rgb(108, 2, 2));
 }
+
+.loginForm input:hover, .loginForm select:hover{
+    border: 1px solid #555;
+} 

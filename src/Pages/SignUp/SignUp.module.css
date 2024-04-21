@@ -1,0 +1,78 @@
+.body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f5f5f5;
+}
+
+.registerForm {
+    width: 100%;
+    max-width: 400px;
+    padding: 20px 0px; 
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.registerForm h1{
+    margin: 10px 0;
+    background-image: linear-gradient(to right , rgb(255, 72, 0), rgb(108, 2, 2));
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    font-size: 2.3rem;
+}
+
+.registerForm div{
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.registerForm div label{
+    margin: 5px 0;
+    margin-top: 15px;
+    font-size: 1.2rem;
+}
+
+.registerForm div input,
+.registerForm div select {
+    width: 90%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.registerForm div button{
+    width: 90%;
+    padding: 10px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 5px;
+    background-image: linear-gradient(to right , rgb(255, 72, 0), rgb(172, 0, 0));
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.registerButton:hover{
+    background-image: linear-gradient(to right , rgb(255, 72, 0), rgb(108, 2, 2));
+}
+
+.registerForm input:hover, .registerForm select:hover{
+    border: 1px solid #555;
+} 
+
+.select{
+    padding: 0 15px;
+    margin-bottom: 5px;
+    box-sizing: border-box;
+}

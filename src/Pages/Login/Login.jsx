@@ -3,8 +3,8 @@ import { Helmet } from 'react-helmet';
 import styles from './Login.module.css';
 
 const Login = () => {
-    const loggedInEmail = localStorage.getItem('loggedInEmail');
-    if (loggedInEmail) {
+    const userID = localStorage.getItem('userID');
+    if (userID) {
         window.location.href = '/'; // Redirect to home page
         return null; // Return null to prevent rendering the rest of the component
     }
@@ -40,13 +40,11 @@ const Login = () => {
                         loginType,
                     }),
                 });
-
+            
                 if (response.status === 200) {
                     const data = await response.json();
-                    console.log(data)
                     localStorage.setItem('userID', data.id);   
-                    localStorage.setItem('loggedInEmail', email);
-                    localStorage.setItem('userType', loginType);
+                    localStorage.setItem('userType', data.type);
                     window.location.href = '/manage';
                 } else {
                     const errorText = await response.text();
@@ -54,45 +52,42 @@ const Login = () => {
                 }
             
             }
-        catch (error) {
-            console.error(error);
-            alert('Login failed');
-        }
-    }
-    else if(loginType === 'user'){
-        try {
-            const response = await fetch('/api/sign-in', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    email,
-                    password,
-                    loginType,
-                }),
-            });
-
-            if (response.status === 200) {
-                const data = await response.json();
-                console.log(data)
-                // Store the email in local storage or a state management solution
-                localStorage.setItem('userID', data.id);
-                console.log(localStorage.getItem('userID'))
-                localStorage.setItem('loggedInEmail', email);
-                localStorage.setItem('userType', loginType);
-                // Redirect to the home page
-                /* window.location.href = '/'; */
-            } else {
-                const errorText = await response.text();
-                throw new Error(errorText);
+            catch (error) {
+                console.error(error);
+                alert('Login failed');
             }
-        } catch (error) {
-            console.error(error);
-            alert('Login failed');
         }
-    }
+        else if(loginType === 'user'){
+            try {
+                const response = await fetch('/api/sign-in', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        email,
+                        password,
+                        loginType,
+                    }),
+                });
         
+                if (response.status === 200) {
+                    const data = await response.json();
+                    console.log(data)
+                    // Store the email in local storage or a state management solution
+                    localStorage.setItem('userID', data.id);
+                    localStorage.setItem('userType', data.type);
+                    // Redirect to the home page
+                    window.location.href = '/'; 
+                } else {
+                    const errorText = await response.text();
+                    throw new Error(errorText);
+                }
+            } catch (error) {
+                console.error(error);
+                alert('Login failed');
+            }
+        }    
     };
 
     return (
@@ -105,18 +100,12 @@ const Login = () => {
                     <h1>LOGIN</h1>
                     <div>
                         <input type="email" placeholder='Email' value={email} onChange={handleEmailChange} />
-                    </div>
-                    <div>
                         <input type="password" placeholder='Password' value={password} onChange={handlePasswordChange} />
-                    </div>
-                    <div>
                         <label>Login As:</label>
                         <select value={loginType} onChange={handleLoginTypeChange}>
                             <option value="user">Individual Person</option>
                             <option value="admin">Bloodbank Admin</option>
                         </select>
-                    </div>
-                    <div>
                         <button type="submit" className={styles.loginButton}>Login</button>
                     </div>
                 </form>

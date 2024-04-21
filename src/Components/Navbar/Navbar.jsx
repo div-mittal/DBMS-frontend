@@ -2,26 +2,32 @@ import React, { useState, useEffect } from 'react';
 import styles from './Navbar.module.css';
 import { Link } from 'react-router-dom';
 
-function Navbar() {
+const Navbar = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [userType, setUserType] = useState('');
     const checkLoggedIn = () => {
-        const loggedInEmail = localStorage.getItem('loggedInEmail');
-        return loggedInEmail;
+        const userID = localStorage.getItem('userID');
+        return userID;
     };
 
     const logout = () => {
-        localStorage.removeItem('loggedInEmail');
+        localStorage.removeItem('userID');
         localStorage.removeItem('userType');
         setIsLoggedIn(false);
+
+        try {
+            
+        } catch (error) {
+            
+        }
         // Add any additional logout logic here
     };
 
     useEffect(() => {
         const checkLoginStatus = async () => {
             try {
-                const loggedInEmail = await checkLoggedIn();
-                if (loggedInEmail) {
+                const userID = await checkLoggedIn();
+                if (userID) {
                     setIsLoggedIn(true);
                     setUserType(localStorage.getItem('userType'));
                 }
