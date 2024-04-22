@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import Data from '../../assets/data';
+
 
 const Donate = () => {
     const userType = localStorage.getItem('userType');
@@ -8,12 +10,13 @@ const Donate = () => {
         return null; // Return null to prevent rendering the rest of the component
     }
 
-    const [state, setState] = useState('');
-    const [district, setDistrict] = useState('');
-    const [bloodGroup, setBloodGroup] = useState('');
-    const [mobile, setMobile] = useState('');
-
+    const [state, setState] = useState();
+    const [district, setDistrict] = useState();
+    const [bloodGroup, setBloodGroup] = useState();
+    const [mobile, setMobile] = useState();
     const userID = localStorage.getItem('userID');
+
+    const availableDistrict = Data.states.find((item) => item.state === state);
 
     const handleStateChange = (e) => {
         setState(e.target.value);
@@ -59,6 +62,7 @@ const Donate = () => {
             alert('Donation request failed');
         }
     };
+
     return (
         <div>
             <h1>Donate</h1>
@@ -66,29 +70,44 @@ const Donate = () => {
                 <label htmlFor="state">State:</label>
                 <select id="state" name="state" onChange={handleStateChange}>
                     <option value="">Select State</option>
-                    <option value="AndhraPradesh">Andhra Pradesh</option>
-                    <option value="ArunachalPradesh">Arunachal Pradesh</option>
-                    <option value="Assam">Assam</option>
+                    {Data.states.map((value, key) => {
+                        return(
+                            <option key={key} value={value.state}>{value.state}</option>
+                        )
+                    })
+                    }
                 </select>
 
                 <label htmlFor="district">District:</label>
                 <select id="district" name="district" onChange={handleDistrictChange}>
                     <option value="">Select District</option>
-                    <option value="test">Test</option>
+                    {availableDistrict && availableDistrict.districts.map((value, key) => {
+                        return(
+                            <option key={key} value={value}>{value}</option>
+                        )
+                    
+                    })
+                }
                 </select>
 
                 <label htmlFor="bloodGroup">Blood Group:</label>
                 <select id="bloodGroup" name="bloodGroup" onChange={handleBloodGroupChange}>
                     <option value="">Select Blood Group</option>
-                    <option value="A+">A+</option>
+                    {
+                        Data.bloodGroups.map((value, key) => {
+                            return(
+                                <option key={key} value={value}>{value}</option>
+                            )
+                        })
+                    }
                 </select>
-                
-                <input type="number" placeholder='Mobile' value={mobile} onChange={handleMobileChange} />
+
+                <input type="tel" pattern="[0-9]*" placeholder='Mobile' value={mobile} onChange={handleMobileChange} />
 
                 <button type="submit">Submit</button>
             </form>
         </div>
     );
-    }
+}
 
 export default Donate;

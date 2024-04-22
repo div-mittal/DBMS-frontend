@@ -1,6 +1,7 @@
 import { Helmet } from "react-helmet";
 import { useState } from "react";
 import styles from "./SignUp.module.css";
+import Data from "../../assets/data";
 
 const SignUp = () => {
     const userID = localStorage.getItem('userID');
@@ -10,13 +11,14 @@ const SignUp = () => {
     }
 
     const [loginType, setLoginType] = useState('user');
-    const [email, setEmail] = useState('')
-    const [password,setPassword]=useState('')
-    const [firstName, setFirstName] = useState('')
-    const [lastName, setLastName] = useState('')
-    const [bankName, setBankName] = useState('')
-    const [state, setState] = useState('')
-    const [district, setDistrict] = useState('')
+    const [email, setEmail] = useState()
+    const [password,setPassword]=useState()
+    const [firstName, setFirstName] = useState()
+    const [lastName, setLastName] = useState()
+    const [bankName, setBankName] = useState()
+    const [state, setState] = useState()
+    const [district, setDistrict] = useState()
+    const availableDistrict = Data.states.find((item) => item.state === state);
 
     const handleLoginTypeChange = (e)=>{
         setLoginType(e.target.value)
@@ -144,15 +146,19 @@ const SignUp = () => {
                     <>
                         <select id="state" name="state" onChange={handleStateChange}>
                             <option value="">Select State</option>
-                            <option value="AndhraPradesh">Andhra Pradesh</option>
-                            <option value="ArunachalPradesh">Arunachal Pradesh</option>
-                            <option value="Assam">Assam</option>
+                            {Data.states.map((value, key) => {
+                                return(
+                                    <option key={key} value={value.state}>{value.state}</option>
+                                )
+                            })}
                         </select>
                         <select id="district" name="district" onChange={handleDistrictChange}>
                             <option value="">Select District</option>
-                            <option value="Anantapur">Anantapur</option>
-                            <option value="Chittoor">Chittoor</option>
-                            <option value="East Godavari">East Godavari</option>
+                            {availableDistrict && availableDistrict.districts.map((value, key) => {
+                                return(
+                                    <option key={key} value={value}>{value}</option>
+                                )
+                            })}
                         </select>
                         <input type="text" placeholder='Blood Bank Name' value={bankName} onChange={handleBankNameChange}/>
                     </>
