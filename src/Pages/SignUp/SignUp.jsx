@@ -123,14 +123,14 @@ const SignUp = () => {
     return (
         <>
         <Helmet>
-            <title></title>
+            <title>Blood Guardian | Sign Up</title>
         </Helmet>
         <div className={styles.body}>
             <form onSubmit={handleSubmit} className={styles.registerForm}>
                 <h1>SIGN UP</h1>
                 <div className={styles.select}>
-                    <label>Register As:</label>
-                    <select value={loginType} onChange={handleLoginTypeChange} className={styles.select}>
+                    <label htmlFor="typeSelect">Register As:</label>
+                    <select value={loginType} onChange={handleLoginTypeChange} className={styles.select} id="typeSelect">
                         <option value="user">Individual Person</option>
                         <option value="admin">Bloodbank Admin</option>
                     </select>
@@ -144,7 +144,7 @@ const SignUp = () => {
                 ):
                 (
                     <>
-                        <select id="state" name="state" onChange={handleStateChange}>
+                        <select name="state" onChange={handleStateChange}>
                             <option value="">Select State</option>
                             {Data.states.map((value, key) => {
                                 return(
@@ -152,7 +152,7 @@ const SignUp = () => {
                                 )
                             })}
                         </select>
-                        <select id="district" name="district" onChange={handleDistrictChange}>
+                        <select name="district" onChange={handleDistrictChange}>
                             <option value="">Select District</option>
                             {availableDistrict && availableDistrict.districts.map((value, key) => {
                                 return(

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Data from '../../assets/data';
-
+import styles from './Donate.module.css';
 
 const Donate = () => {
     const userType = localStorage.getItem('userType');
@@ -64,47 +64,46 @@ const Donate = () => {
     };
 
     return (
-        <div>
-            <h1>Donate</h1>
-            <form onSubmit={handleSubmit}>
-                <label htmlFor="state">State:</label>
-                <select id="state" name="state" onChange={handleStateChange}>
-                    <option value="">Select State</option>
-                    {Data.states.map((value, key) => {
-                        return(
-                            <option key={key} value={value.state}>{value.state}</option>
-                        )
-                    })
-                    }
-                </select>
+        <div className={styles.body}>
+            <form onSubmit={handleSubmit} className={styles.donateForm}>
+                <h1>Donate</h1>
+                <div>
+                    <select id="state" name="state" onChange={handleStateChange}>
+                        <option value="">Select State</option>
+                        {Data.states.map((value, key) => {
+                            return(
+                                <option key={key} value={value.state}>{value.state}</option>
+                            )
+                        })
+                        }
+                    </select>
 
-                <label htmlFor="district">District:</label>
-                <select id="district" name="district" onChange={handleDistrictChange}>
-                    <option value="">Select District</option>
-                    {availableDistrict && availableDistrict.districts.map((value, key) => {
-                        return(
-                            <option key={key} value={value}>{value}</option>
-                        )
-                    
-                    })
-                }
-                </select>
-
-                <label htmlFor="bloodGroup">Blood Group:</label>
-                <select id="bloodGroup" name="bloodGroup" onChange={handleBloodGroupChange}>
-                    <option value="">Select Blood Group</option>
-                    {
-                        Data.bloodGroups.map((value, key) => {
+                    <select id="district" name="district" onChange={handleDistrictChange}>
+                        <option value="">Select District</option>
+                        {availableDistrict && availableDistrict.districts.map((value, key) => {
                             return(
                                 <option key={key} value={value}>{value}</option>
                             )
+                        
                         })
                     }
-                </select>
+                    </select>
 
-                <input type="tel" pattern="[0-9]*" placeholder='Mobile' value={mobile} onChange={handleMobileChange} />
+                    <select id="bloodGroup" name="bloodGroup" onChange={handleBloodGroupChange}>
+                        <option value="">Select Blood Group</option>
+                        {
+                            Data.bloodGroups.map((value, key) => {
+                                return(
+                                    <option key={key} value={value}>{value}</option>
+                                )
+                            })
+                        }
+                    </select>
 
-                <button type="submit">Submit</button>
+                    <input type="tel" pattern="[0-9]*" placeholder='Mobile' value={mobile} onChange={handleMobileChange} />
+                    <button type="submit" className={styles.donateButton}>Submit</button>
+                </div>
+
             </form>
         </div>
     );

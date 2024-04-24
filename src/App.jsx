@@ -8,6 +8,7 @@ import SignUp from './Pages/SignUp/SignUp.jsx'
 import Donate from './Pages/Donate/Donate.jsx'
 import FindDonor from './Pages/FindDonor/FindDonor.jsx'
 import Manage from './Pages/Manage/Manage.jsx'
+import DonorResults from './Pages/Result/Result.jsx'
 
 function App() {
   const navigate = useNavigate();
@@ -30,6 +31,7 @@ function App() {
         <Route path="/donate" element={<Donate />} />
         <Route path="/find-donor" element={<FindDonor />} />
         <Route path="/manage" element={<Manage />} />
+        <Route path="/results" element={<DonorResults />} />
         <Route path="*" element={handleInvalidRoute} /> {/* Handle invalid routes */}
       </Routes>
       <Footer/> 
