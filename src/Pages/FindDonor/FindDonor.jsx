@@ -10,6 +10,9 @@ const FindDonor = () => {
     const userID = localStorage.getItem('userID');
     const userType = localStorage.getItem('userType');
     const [donors, setDonors] = useState([]);
+    const [bloodBanks, setBloodBanks] = useState([]);
+    const [showDonorsTable, setShowDonorsTable] = useState(false);
+    const [showBloodBanksTable, setShowBloodBanksTable] = useState(false);
 
     if (userType !== 'user') {
         window.location.href = '/'; // Redirect to home page
@@ -31,11 +34,10 @@ const FindDonor = () => {
     }
 
     const handleDonorsResponse = (response) => {
-        // Assuming the response is an array of donor objects
         setDonors(response);
     };
-    
-    const handleDonorsSubmit = async (e) => {
+
+    const handleDonorSearch = async (e) => {
         e.preventDefault();
         try {
             const response = await fetch('/api/find-donors', {
@@ -49,9 +51,42 @@ const FindDonor = () => {
                     bloodGroup,
                 }),
             });
-            if (response.status === 200) {  
+            if (response.status === 200) {
                 const data = await response.json();
                 handleDonorsResponse(data);
+                setShowDonorsTable(true);
+                setShowBloodBanksTable(false);
+
+            } else {
+                const errorText = await response.text();
+                throw new Error(errorText);
+            }
+        } catch (error) {
+            console.error(error);
+            alert('Search Request Failed');
+        }
+    };
+
+    const handleBloodBankSearch = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await fetch('/api/find-blood-banks', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    state,
+                    district,
+                    bloodGroup
+                }),
+            });
+            if (response.status === 200) {
+                const data = await response.json();
+                setBloodBanks(data);
+                setShowDonorsTable(false);
+                setShowBloodBanksTable(true);
+
             } else {
                 const errorText = await response.text();
                 throw new Error(errorText);
@@ -65,75 +100,105 @@ const FindDonor = () => {
     return (
         <>
             <div className={styles.body}>
-            <div className={styles.carousel}>
-                <DemoCarousel />
-            </div>
-            <div className={styles.search}>
-            <form className={styles.donorsForm}>
-                <h1>SEARCH BLOOD STOCK</h1>
-                <div> 
-                    <select id="state" name="state" onChange={handleStateChange}>
-                        <option value="">Select State</option>
-                        {Data.states.map((value, key) => {
-                            return(
-                                <option key={key} value={value.state}>{value.state}</option>
-                            )
-                        })
-                        }
-                    </select>
+                <div className={styles.carousel}>
+                    <DemoCarousel />
+                </div>
+                <div className={styles.search}>
+                    <form className={styles.donorsForm}>
+                        <h1>SEARCH BLOOD STOCK</h1>
+                        <div>
+                            <select id="state" name="state" onChange={handleStateChange}>
+                                <option value="">Select State</option>
+                                {Data.states.map((value, key) => {
+                                    return (
+                                        <option key={key} value={value.state}>{value.state}</option>
+                                    )
+                                })}
+                            </select>
 
-                    <select id="district" name="district" onChange={handleDistrictChange}>
-                        <option value="">Select District</option>
-                        {availableDistrict && availableDistrict.districts.map((value, key) => {
-                            return(
-                                <option key={key} value={value}>{value}</option>
-                            )
-                        
-                        })
-                    }
-                    </select>
-                    
-                    <select id="bloodGroup" name="bloodGroup" onChange={handleBloodGroupChange}>
-                        <option value="">Select Blood Group</option>
-                        {
-                            Data.bloodGroups.map((value, key) => {
-                                return(
-                                    <option key={key} value={value}>{value}</option>
-                                )
-                            })
-                        }
-                    </select>
+                            <select id="district" name="district" onChange={handleDistrictChange}>
+                                <option value="">Select District</option>
+                                {availableDistrict && availableDistrict.districts.map((value, key) => {
+                                    return (
+                                        <option key={key} value={value}>{value}</option>
+                                    )
+                                })}
+                            </select>
+
+                            <select id="bloodGroup" name="bloodGroup" onChange={handleBloodGroupChange}>
+                                <option value="">Select Blood Group</option>
+                                {Data.bloodGroups.map((value, key) => {
+                                    return (
+                                        <option key={key} value={value}>{value}</option>
+                                    )
+                                })}
+                            </select>
+                        </div>
+                        <div>
+                            <button type="submit" onClick={handleDonorSearch}>Search Donors</button>
+                            <button type="submit" onClick={handleBloodBankSearch}>Search Blood Banks</button>
+                        </div>
+                    </form>
                 </div>
-                <div>
-                    <button type="submit" onClick={handleDonorsSubmit}>Search Donors</button>
-                    <button type="submit">Search Blood Banks</button>            
-                </div>
-            </form>
             </div>
-        </div>
-        <div>
-            <table>
-                <thead>
-                    <tr>
-                        <th>S.No</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Mobile</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {/* Map over the donors array and render each donor */}
-                    {donors.map((donor, index) => (
-                        <tr key={index}>
-                            <td>{index + 1}</td>
-                            <td>{donor.FirstName}</td>
-                            <td>{donor.LastName}</td>
-                            <td>{donor.Mobile}</td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
-        </div>
+            <div  className={styles.response}>
+                {showDonorsTable ? (
+                    <div>
+                        {donors.length > 0 ? (
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>S.No</th>
+                                        <th>Name</th>
+                                        <th>Mobile</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {/* Map over the donors array and render each donor */}
+                                    {donors.map((donor, index) => (
+                                        <tr key={index}>
+                                            <td>{index + 1}</td>
+                                            <td>{donor.FirstName + " " + donor.LastName}</td>
+                                            <td>{donor.Mobile}</td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        ) : (
+                            <p className={styles.message}>No donors available</p>
+                        )}
+                    </div>
+                ) : null}
+                {showBloodBanksTable ? (
+                    <div>
+                        {bloodBanks.length > 0 ? (
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>S.No</th>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Available Units</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {/* Map over the bloodBanks array and render each blood bank */}
+                                    {bloodBanks.map((bloodBank, index) => (
+                                        <tr key={index}>
+                                            <td>{index + 1}</td>
+                                            <td>{bloodBank.Name}</td>
+                                            <td>{bloodBank.email}</td>
+                                            <td>{bloodBank[`${bloodGroup}`]}</td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        ) : (
+                            <p className={styles.message}>No blood banks available</p>
+                        )}
+                    </div>
+                ) : null}
+            </div>
         </>
     )
 }

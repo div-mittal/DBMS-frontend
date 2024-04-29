@@ -13,6 +13,15 @@ const Navbar = () => {
     const logout = () => {
         localStorage.removeItem('userID');
         localStorage.removeItem('userType');
+        
+        fetch('/api/logout', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({}),
+        });
+
         setIsLoggedIn(false);
 
         try {
