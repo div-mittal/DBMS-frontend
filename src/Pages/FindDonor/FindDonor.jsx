@@ -143,7 +143,7 @@ const FindDonor = () => {
             </div>
             <div  className={styles.response}>
                 {showDonorsTable ? (
-                    <div>
+                    <div className={styles.responseTable}>
                         {donors.length > 0 ? (
                             <table>
                                 <thead>
@@ -170,7 +170,7 @@ const FindDonor = () => {
                     </div>
                 ) : null}
                 {showBloodBanksTable ? (
-                    <div>
+                    <div className={styles.responseTable}>
                         {bloodBanks.length > 0 ? (
                             <table>
                                 <thead>

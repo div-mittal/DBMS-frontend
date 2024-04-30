@@ -1,0 +1,161 @@
+.body{
+    background-color: #ffffff;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    flex-direction: column;
+}
+
+.manage{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 1rem 0;
+    width: 90%;
+    max-width: 700px;
+    background-color: #e4e2e24e;
+    border-radius: 10px;
+    padding: 1rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 4rem;
+}
+
+.Name{
+    background-image: linear-gradient(to right , rgb(255, 72, 0), rgb(108, 2, 2));
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    font-size: 3rem;
+    margin-top: 4rem;
+}
+
+.manage div{
+    display: flex;
+    flex-direction: row;
+    justify-content:space-evenly;
+    align-items: center;
+    width: 80%;
+    max-width: 300px;
+    margin: 0.5rem 0;
+    font-size: 1.2rem;
+}
+
+.manage div label{
+    margin: 5px 7px;
+    font-size: 1.2rem;
+}
+
+.manage div input{
+    width: 70%;
+    padding: 5px 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.buttonMain {
+    margin: 1.5rem 0 !important;
+}
+.button{
+    display: flex;
+    flex-direction: row;
+    justify-content: center !important;
+    align-items: center;
+    width: 100%;
+}
+
+.button button{
+    padding: 0.7rem 1.2rem;
+    height: 4.5rem;
+    font-size: 2rem;
+    font-weight: 600;
+    border: none;
+    background-color: rgb(255, 72, 0);
+    color: white;
+    cursor: pointer;
+}
+
+.button .left{
+    margin: 0;
+    width: 1.1rem;
+    height: 4.5rem;
+    display: flex;
+    flex-direction: column;
+    margin: 0 !important;
+}
+
+.button .left .leftupper{
+    width: 0;
+    height: 0;
+    border-bottom: 1.3rem solid rgb(255, 72, 0);
+    border-right: 0rem solid transparent;
+    border-left: 1.1rem solid transparent;
+    margin: 0 !important;
+}
+
+.button .left .leftbottom{
+    width: 1.1rem;
+    height: 3.2rem;
+    background-color: rgb(255, 72, 0);
+    margin: 0 !important;
+}
+
+.button .right{
+    margin: 0;
+    width: 1.1rem;
+    height: 4.5rem;
+    display: flex;
+    flex-direction: column;
+    margin: 0 !important;
+}
+
+.button .right .rightupper{
+    width: 0;
+    height: 0;
+    border-bottom: 1.3rem solid rgb(255, 72, 0);
+    border-right: 1.1rem solid transparent;
+    border-left: 0rem solid transparent;
+    margin: 0 !important;
+}
+
+.button .right .rightbottom{
+    width: 1.1rem;
+    height: 3.2rem;
+    background-color: rgb(255, 72, 0);
+    margin: 0 !important;
+}
+
+.button:hover{
+    .left .leftupper{
+        border-bottom: 1.3rem solid rgb(163, 0, 0);
+    }
+    .left .leftbottom{
+        background-color: rgb(163, 0, 0);
+    }
+
+    .right .rightupper{
+        border-bottom: 1.3rem solid rgb(163, 0, 0);
+    }
+    .right .rightbottom{
+        background-color: rgb(163, 0, 0);
+    }
+    button{
+        background-color: rgb(163, 0, 0);
+        font-size: 2.1rem;
+    }
+}
+
+
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
