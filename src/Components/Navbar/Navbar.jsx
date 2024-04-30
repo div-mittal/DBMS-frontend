@@ -29,7 +29,6 @@ const Navbar = () => {
         } catch (error) {
             
         }
-        // Add any additional logout logic here
     };
 
     useEffect(() => {

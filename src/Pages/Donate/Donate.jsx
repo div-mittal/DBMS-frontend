@@ -37,7 +37,7 @@ const Donate = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch('/api/donate', {
+            const response = await fetch('/api/user/donate', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

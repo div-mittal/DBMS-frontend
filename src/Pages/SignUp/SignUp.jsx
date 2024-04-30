@@ -56,7 +56,7 @@ const SignUp = () => {
         e.preventDefault();
         if(loginType === 'user'){
             try {
-                const response = await fetch('/api/sign-up', {
+                const response = await fetch('/api/user/sign-up', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -73,8 +73,8 @@ const SignUp = () => {
     
                 if(response.status == 200){
                     const data = await response.json();
-                    localStorage.setItem('userID', data.id);
-                    localStorage.setItem('userType', data.type);
+                    localStorage.setItem('userID', data.data.id);
+                    localStorage.setItem('userType', data.data.type);
                     window.location.href='/'
                 } else {
                     const errorText = await response.text();
@@ -88,7 +88,7 @@ const SignUp = () => {
         }
         else if(loginType === 'admin'){
             try {
-                const response = await fetch('/api/sign-up-admin', {
+                const response = await fetch('/api/admin/sign-up', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -105,8 +105,8 @@ const SignUp = () => {
     
                 if(response.status == 200){
                     const data = await response.json();
-                    localStorage.setItem('userID', data.id);
-                    localStorage.setItem('userType', data.type);
+                    localStorage.setItem('userID', data.data.id);
+                    localStorage.setItem('userType', data.data.type);
                     window.location.href='/manage'
                 } else {
                     const errorText = await response.text();

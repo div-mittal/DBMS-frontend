@@ -17,7 +17,7 @@ const Manage = () => {
         } else {
             const fetchData = async () => {
                 try {
-                    const response = await axios.get(`/api/bloodbank/${userID}`);
+                    const response = await axios.get(`/api/admin/manage/${userID}`);
                     setData(response.data);
                     // Process the response data here
                 } catch (error) {
@@ -42,7 +42,7 @@ const Manage = () => {
                 }
                 return acc;
             }, {});
-            const response = await axios.post(`/api/bloodbank/${userID}`, filteredData);
+            const response = await axios.post(`/api/admin/update/${userID}`, filteredData);
             alert('Data updated successfully');
         } catch (error) {
             alert('Failed to update data');

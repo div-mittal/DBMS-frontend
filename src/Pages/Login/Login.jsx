@@ -29,7 +29,7 @@ const Login = () => {
         e.preventDefault();
         if (loginType === 'admin') {
             try {
-                const response = await fetch('/api/sign-in-admin', {
+                const response = await fetch('/api/admin/sign-in', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -43,8 +43,8 @@ const Login = () => {
             
                 if (response.status === 200) {
                     const data = await response.json();
-                    localStorage.setItem('userID', data.id);   
-                    localStorage.setItem('userType', data.type);
+                    localStorage.setItem('userID', data.data.id);   
+                    localStorage.setItem('userType', data.data.type);
                     window.location.href = '/manage';
                 } else {
                     const errorText = await response.text();
@@ -59,7 +59,7 @@ const Login = () => {
         }
         else if(loginType === 'user'){
             try {
-                const response = await fetch('/api/sign-in', {
+                const response = await fetch('/api/user/sign-in', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -75,8 +75,8 @@ const Login = () => {
                     const data = await response.json();
                     console.log(data)
                     // Store the email in local storage or a state management solution
-                    localStorage.setItem('userID', data.id);
-                    localStorage.setItem('userType', data.type);
+                    localStorage.setItem('userID', data.data.id);
+                    localStorage.setItem('userType', data.data.type);
                     // Redirect to the home page
                     window.location.href = '/'; 
                 } else {

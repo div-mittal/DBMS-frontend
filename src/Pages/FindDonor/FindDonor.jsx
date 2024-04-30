@@ -40,7 +40,7 @@ const FindDonor = () => {
     const handleDonorSearch = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch('/api/find-donors', {
+            const response = await fetch('/api/user/find-donors', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -53,7 +53,7 @@ const FindDonor = () => {
             });
             if (response.status === 200) {
                 const data = await response.json();
-                handleDonorsResponse(data);
+                handleDonorsResponse(data.data);
                 setShowDonorsTable(true);
                 setShowBloodBanksTable(false);
 
@@ -70,7 +70,7 @@ const FindDonor = () => {
     const handleBloodBankSearch = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch('/api/find-blood-banks', {
+            const response = await fetch('/api/user/find-blood-banks', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -83,7 +83,7 @@ const FindDonor = () => {
             });
             if (response.status === 200) {
                 const data = await response.json();
-                setBloodBanks(data);
+                setBloodBanks(data.data);
                 setShowDonorsTable(false);
                 setShowBloodBanksTable(true);
 
